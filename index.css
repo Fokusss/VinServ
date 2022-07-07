@@ -47,6 +47,7 @@
   padding: 5px 5px 6px 5px;
   border-bottom: 1px solid #f59584;
   text-align: center;
+  margin: 0;
 }
 
 .content {
@@ -54,11 +55,13 @@
   margin: 40px 0 0 0;
   border-top: 1px solid black;
   display: grid; /* none */
-  grid-template-columns: .5fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: auto;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   padding-top: 20px;
-  gap: 20px 10px;
+  gap: 30px;
 }
 
 .content_active {
@@ -91,6 +94,15 @@
   display: block; /* none */
 }
 
+.menu-vine {
+  margin: 40px 0 0 0;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 200px;
+  justify-content: center;
+  gap: 20px;
+}
+
 .disabled {
-  opacity: .6;
+  display: none;
 }

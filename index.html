@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,32 +8,40 @@
   <title>VinS</title>
   <link rel="stylesheet" href="./index.css">
 </head>
+
 <body class="page">
-<header class="header">
-  <div class="header__logo">VinS</div>
-</header>
-<main>
-  <section class="nav">
-    <nav class="menu">
-      <ul class="menu__list">
-        <li><a href="#" class="menu__link">Back</a></li>
-        <li><a href="#" class="menu__link">Menu</a></li>
-        <li><a href="#" class="menu__link">Next</a></li>
-      </ul>
-    </nav>
-  </section>
-  <section class="main">
-    <div class="content">
-      <p class="content__type">Название</p> <p class="content__vin">Альмос Мальбек</p>
-    <p class="content__type">Страна</p> <p class="content__vin">Аргентина</p>
-    <p class="content__type">Регион</p> <p class="content__vin">Мендоса</p>
-    <p class="content__type">Производитель</p> <p class="content__vin">Катена Запата</p>
-    <p class="content__type">Сорт</p> <p class="content__vin">Мальбек</p>
-    </div>
-    <div class="content-hide">
-      Нужно выбрать категорию.
-    </div>
-  </section>
-</main>
+  <header class="header">
+    <div class="header__logo">VinS</div>
+  </header>
+  <main>
+    <section class="nav">
+      <nav class="menu">
+        <ul class="menu__list">
+          <li><p  class="menu__link back disabled">Back</p></li>
+          <li><p class="menu__link menus">Menu</p></li>
+          <li><p class="menu__link next disabled">Next</p></li>
+        </ul>
+      </nav>
+      <div class="menu-vine disabled">
+        <p class="menu__link white">Белые вина</p>
+        <p class="menu__link red">Красные вина</p>
+        <p class="menu__link igri">Игристые вина</p>
+      </div>
+    </section>
+    <section class="main">
+      <div class="content">
+        <p class="content__vin name"></p>
+        <p class="content__vin country"></p>
+        <p class="content__vin region"></p>
+        <p class="content__vin manufaktur"></p>
+        <p class="content__vin sort"></p>
+      </div>
+      <div class="content-hide">
+        Нужно выбрать категорию.
+      </div>
+    </section>
+  </main>
+  <script src="./index.js"></script>
 </body>
+
 </html>
