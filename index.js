@@ -1,4 +1,4 @@
-const whiteVine = [
+const whiteVines = [
   {
     name: "Оливье Трикон Шабли",
     country: "Франция",
@@ -50,7 +50,7 @@ const whiteVine = [
   },
 ];
 
-const redVine = [
+const redVines = [
   {
     name: "Батазиоло Бароло",
     country: "Италия",
@@ -144,7 +144,7 @@ const redVine = [
   },
 ];
 
-const roseVine = [
+const roseVines = [
   {
     name: "Высокий Берег Цвайгельт",
     country: "Россия",
@@ -154,7 +154,7 @@ const roseVine = [
   },
 ];
 
-const igriVine = [
+const igriVines = [
   {
     name: "Ла Джойоза Просекко",
     country: "Италия",
@@ -206,101 +206,186 @@ const igriVine = [
   },
 ];
 
-const menuLink = document.querySelector(".menus");
-const next = document.querySelector(".next");
-const back = document.querySelector(".back");
+const content = document.querySelector('.content');
+const contenVine = Array.from(content.querySelectorAll('.content__vin'));
 
-const menuVine = document.querySelector(".menu-vine");
-const red = menuVine.querySelector(".red");
-const white = menuVine.querySelector(".white");
-const igri = menuVine.querySelector(".igri");
 
-const content = document.querySelector(".content");
-const contName = content.querySelector(".name");
-const contCountry = content.querySelector(".country");
-const contRegion = content.querySelector(".region");
-const contManuf = content.querySelector(".manufaktur");
-const contSort = content.querySelector(".sort");
 
-function openMenu() {
-  menuVine.classList.toggle("disabled");
-  if (!content.classList.contains("disabled")) {
-    content.classList.add("disabled");
-    next.classList.add("disabled");
-    back.classList.add("disabled");
+/*Кнопка подсказки */
+const buttonTogle = document.querySelector('.header__logo');
+const typesCont = Array.from(document.querySelectorAll('.content__type'));
+
+
+
+buttonTogle.addEventListener('click', () => {
+  content.classList.toggle('content_whie');
+  typesCont.forEach((item) => {
+    item.classList.toggle('content__type_active');
+  })
+  contenVine.forEach((item) => {
+    item.classList.toggle('content__vin_active');
+  })
+})
+
+/* Показ меню */
+const buttonMenu = document.querySelector('.menus');
+const menuVine = document.querySelector('.menu-vine');
+
+
+buttonMenu.addEventListener('click', () => {
+  menuVine.classList.toggle('disabled');
+  content.classList.add('disabled');
+  hideButton()
+})
+
+/* Работа кнопок с меню */
+
+const whiteVine = menuVine.querySelector('.white');
+const redVine = menuVine.querySelector('.red');
+const igriVine = menuVine.querySelector('.igri');
+const next = document.querySelector('.next');
+const back = document.querySelector('.back');
+const namE = document.querySelector('.name');
+const country = document.querySelector('.country');
+const region = document.querySelector('.region');
+const manuf = document.querySelector('.manufaktur');
+const sort = document.querySelector('.sort');
+
+/*  */
+
+let activeVine = '';
+let activePosition = 0;
+
+function openContent() {
+  content.classList.remove('disabled');
+}
+
+function showButton () {
+  if (activeVine === 'white'){
+    if (activePosition === whiteVines.length - 1){
+      next.classList.add('disabled');
+    } else if (next.classList.contains){
+      next.classList.remove('disabled')
+    }
+    if (activePosition === 0) {
+      back.classList.add('disabled')
+    } else if (back.classList.contains('disabled')){
+      back.classList.remove('disabled')
+    }
+  } else if (activeVine === 'red'){
+    if (activePosition === redVines.length - 1){
+      next.classList.add('disabled');
+    } else if (next.classList.contains){
+      next.classList.remove('disabled')
+    }
+    if (activePosition === 0) {
+      back.classList.add('disabled')
+    } else if (back.classList.contains('disabled')){
+      back.classList.remove('disabled')
+    }
+  } else if (activeVine === 'igri'){
+    if (activePosition === igriVines.length - 1){
+      next.classList.add('disabled');
+    } else if (next.classList.contains){
+      next.classList.remove('disabled')
+    }
+    if (activePosition === 0) {
+      back.classList.add('disabled')
+    } else if (back.classList.contains('disabled')){
+      back.classList.remove('disabled')
+    }
   }
 }
 
-function openContent() {
-  menuVine.classList.add("disabled");
-  content.classList.remove("disabled");
-  next.classList.remove("disabled");
-  back.classList.remove("disabled");
+function hideButton () {
+  if (!next.classList.contains('disabled')){
+    next.classList.add('disabled')
+    back.classList.add('disabled')
+  }
 }
 
-function changeMain(date) {
-  let q = 0;
-  contName.textContent = date[q].name;
-  contCountry.textContent = date[q].country;
-  contRegion.textContent = date[q].region;
-  contManuf.textContent = date[q].manufaktur;
-  contSort.textContent = date[q].sort;
-  next.addEventListener("click", (evt) => {
-    evt.preventDefault();
-    console.log('HHH')
-    q++;
-    if (q > 0){
-      back.classList.remove("disabled");
-    }
-    if (q === date.length - 1) {
-      next.classList.add("disabled");
-    }
-    contName.textContent = date[q].name;
-    contCountry.textContent = date[q].country;
-    contRegion.textContent = date[q].region;
-    contManuf.textContent = date[q].manufaktur;
-    contSort.textContent = date[q].sort;
-  });
-  back.addEventListener("click", (evt) => {
-    evt.preventDefault();
-    q--;
-    contName.textContent = date[q].name;
-    contCountry.textContent = date[q].country;
-    contRegion.textContent = date[q].region;
-    contManuf.textContent = date[q].manufaktur;
-    contSort.textContent = date[q].sort;
-    if (q === 0){
-      back.classList.add("disabled");
-      next.classList.remove('disabled')
-    }
-  });
+function showVine() {
+  if (activeVine === 'white'){
+    namE.textContent = whiteVines[activePosition].name
+    country.textContent = whiteVines[activePosition].country
+    region.textContent = whiteVines[activePosition].region
+    manuf.textContent = whiteVines[activePosition].manufaktur
+    sort.textContent = whiteVines[activePosition].sort
+  } else if (activeVine === 'red'){
+    namE.textContent = redVines[activePosition].name
+    country.textContent = redVines[activePosition].country
+    region.textContent = redVines[activePosition].region
+    manuf.textContent = redVines[activePosition].manufaktur
+    sort.textContent = redVines[activePosition].sort
+  } else if (activeVine === 'igri'){
+    namE.textContent = igriVines[activePosition].name
+    country.textContent = igriVines[activePosition].country
+    region.textContent = igriVines[activePosition].region
+    manuf.textContent = igriVines[activePosition].manufaktur
+    sort.textContent = igriVines[activePosition].sort
+  }
 }
 
-/*function changeMain(date) {
-  let k = date;
-  let q = 0;
-  contName.textContent = k[q].name;
-  contCountry.textContent = k[q].country;
-  contRegion.textContent = k[q].region;
-  contManuf.textContent = k[q].manufaktur;
-  contSort.textContent = k[q].sort;
-}*/
+whiteVine.addEventListener('click', () => {
+  if (activeVine != '' & activeVine != 'white'){
+    activePosition = 0;
+  }
+  activeVine = 'white';
+  showVine()
+  if (activePosition != whiteVines.length - 1){
+    next.classList.remove('disabled')
+  }
+  if (activePosition != 0) {
+    back.classList.remove('disabled');
+  }
+  openContent()
+  menuVine.classList.add('disabled');
+})
 
-menuLink.addEventListener("click", openMenu);
-red.addEventListener("click", (evt) => {
-  evt.preventDefault()
-  openContent();
-  changeMain(redVine);
-});
+redVine.addEventListener('click', () => {
+  if (activeVine != '' & activeVine != 'red'){
+    activePosition = 0;
+  }
+  activeVine = 'red';
+  showVine()
+  if (activePosition != redVines.length - 1){
+    next.classList.remove('disabled')
+  }
+  if (activePosition != 0) {
+    back.classList.remove('disabled');
+  }
+  openContent()
+  menuVine.classList.add('disabled');
+})
 
-white.addEventListener("click", (evt) => {
-  evt.preventDefault()
-  openContent();
-  changeMain(whiteVine);
-});
+igriVine.addEventListener('click', () => {
+  if (activeVine != '' & activeVine != 'igri'){
+    activePosition = 0;
+  }
+  activeVine = 'igri';
+  showVine()
+  if (activePosition != igriVines.length - 1){
+    next.classList.remove('disabled')
+  }
+  if (activePosition != 0) {
+    back.classList.remove('disabled');
+  }
+  openContent()
+  menuVine.classList.add('disabled');
+})
 
-igri.addEventListener("click", (evt) => {
-  evt.preventDefault()
-  openContent();
-  changeMain(igriVine);
-});
+
+next.addEventListener('click', () => {
+  activePosition++
+  showVine();
+  showButton();
+})
+
+
+back.addEventListener('click', () => {
+  activePosition--
+  showVine();
+  showButton();
+})
+
+
